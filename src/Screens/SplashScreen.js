@@ -8,12 +8,25 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import { Strings } from '../Utilities/Strings';
+import {Strings} from '../Utilities/Strings';
+import {useSelector} from 'react-redux';
 
 const SplashScreen = ({navigation}) => {
+  const getIntro = useSelector(state => state?.getIntro);
+  const getUserData=useSelector(state=>state?.getUserData)
+  console.log(getUserData,getUserData?.status)
   useEffect(() => {
     logoOffset.value = withSpring(0, {stiffness: 150});
-    setTimeout(()=>{navigation.navigate(Strings.ST3)},3000)
+    setTimeout(() => {
+      if(getUserData?.status){
+        navigation.navigate(Strings.ST6)
+      }
+     else if (getIntro) {
+        navigation.navigate(Strings.ST2);
+      } else {
+        navigation.navigate(Strings.ST3);
+      }
+    }, 3000);
   }, []);
   const logoOffset = useSharedValue(-DeviceHeight);
   const moveLogo = useAnimatedStyle(() => ({

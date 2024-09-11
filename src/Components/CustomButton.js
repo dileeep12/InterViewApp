@@ -3,16 +3,15 @@ import React from 'react';
 import {DeviceHeight, DeviceWidth} from '../Utilities/Config';
 import {Colors} from '../Utilities/Colors';
 
-const CustomButton = ({buttonText}) => {
+const CustomButton = ({buttonText,onPress}) => {
   return (
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity style={styles.button} onPress={onPress}>
       <Text style={styles.textStyle}>{buttonText}</Text>
     </TouchableOpacity>
   );
 };
 const styles = StyleSheet.create({
   button: {
-    top: DeviceHeight * 0.1,
     width: DeviceWidth * 0.85,
     alignSelf: 'center',
     paddingVertical: 9,
