@@ -18,8 +18,20 @@ export const setUserData = data => {
     payload: data,
   };
 };
-export const setLogout=()=>{
+export const setLogout = () => {
   return {
-    type:types.LOGOUT
-  }
-}
+    type: types.LOGOUT,
+  };
+};
+export const setFav = data => {
+  return {
+    type: types.FAVOURITES,
+    payload: data,
+  };
+};
+export const toggleTheme = data => {
+  return {
+    type: types.TOGGLE_THEME,
+    payload: data,
+  };
+};

@@ -7,6 +7,7 @@ import SignUpLogin from './Screens/SignUpLogin';
 import Intro from './Screens/Intro';
 import Home from './Screens/Home';
 import ProductDetails from './Screens/ProductDetails';
+import FavoritesScreen from './Screens/FavouritesScreen';
 const Router = () => {
   const Stack = createNativeStackNavigator();
   const screenOptions = {headerShown: false};
@@ -17,6 +18,7 @@ const Router = () => {
       <Stack.Screen name={Strings.ST3} component={Intro}/>
       <Stack.Screen name={'Home'} component={Home}/>
       <Stack.Screen name={'ProductDetails'} component={ProductDetails}/>
+      <Stack.Screen name="FavouritesScreen" component={FavoritesScreen}/>
     </Stack.Navigator>
   );
 };

@@ -11,7 +11,7 @@ import {DeviceHeight, DeviceWidth} from '../Utilities/Config';
 import {Colors} from '../Utilities/Colors';
 const CustomButton = ({buttonText, onPress, loading}) => {
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress} disabled={loading}>
+    <TouchableOpacity style={styles.button} onPress={onPress} disabled={loading} activeOpacity={0.5}>
       {loading ? (
         <ActivityIndicator color={Colors.WHITE}/>
       ) : (
