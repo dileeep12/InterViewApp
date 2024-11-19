@@ -6,6 +6,7 @@ import SplashScreen from './Screens/SplashScreen';
 import SignUpLogin from './Screens/SignUpLogin';
 import Intro from './Screens/Intro';
 import Home from './Screens/Home';
+import ProductDetails from './Screens/ProductDetails';
 const Router = () => {
   const Stack = createNativeStackNavigator();
   const screenOptions = {headerShown: false};
@@ -15,6 +16,7 @@ const Router = () => {
       <Stack.Screen name={Strings.ST2} component={SignUpLogin} />
       <Stack.Screen name={Strings.ST3} component={Intro}/>
       <Stack.Screen name={'Home'} component={Home}/>
+      <Stack.Screen name={'ProductDetails'} component={ProductDetails}/>
     </Stack.Navigator>
   );
 };

@@ -18,7 +18,6 @@ import CustomButton from '../Components/CustomButton';
 import {Formik} from 'formik';
 import {
   loginValidationSchema,
-  signupValidationSchema,
 } from '../Components/ValidationSchema';
 import axios from 'axios';
 import {Strings} from '../Utilities/Strings';
@@ -26,15 +25,12 @@ import {useDispatch} from 'react-redux';
 import {setUserData} from '../Redux/Actions';
 import {useNavigation} from '@react-navigation/native';
 const Login = ({moveToSign}) => {
-  const [checked, setChecked] = useState(false);
   const [securePassword, setSecurePassword] = useState(true);
   const [loader, setLoader] = useState(false);
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const handleCheck = () => {
-    setChecked(prev => !prev);
-  };
   const handleFormSubmit = async (values, actions) => {
+    setLoader(true);
     try {
       const response = await axios.post(
         'https://tor.appdevelopers.mobi/api/login',
@@ -48,6 +44,7 @@ const Login = ({moveToSign}) => {
           },
         },
       );
+      setLoader(false);
       if (response?.data?.status) {
         ToastAndroid.show(response?.data?.message, ToastAndroid.LONG);
         dispatch(setUserData(response?.data));
@@ -57,7 +54,7 @@ const Login = ({moveToSign}) => {
         ToastAndroid.show(response?.data?.message, ToastAndroid.LONG);
       }
     } catch (error) {
-      console.error(error);
+      setLoader(false);
       ToastAndroid.show(
         'An error occurred. Please try again.',
         ToastAndroid.SHORT,
@@ -204,7 +201,7 @@ const Login = ({moveToSign}) => {
                   Forget password ?
                 </Text>
               </View>
-              <CustomButton buttonText={'Sign In'} onPress={handleSubmit} />
+              <CustomButton buttonText={'Sign In'} onPress={handleSubmit} loading={loader}/>
             </>
           )}
         </Formik>

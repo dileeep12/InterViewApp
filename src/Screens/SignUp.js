@@ -25,6 +25,7 @@ const SignUp = ({moveToLogin}) => {
     setChecked(prev => !prev);
   };
   const handleFormSubmit = async (values, actions) => {
+    setLoader(true);
     try {
       const response = await axios.post(
         'https://tor.appdevelopers.mobi/api/register',
@@ -39,6 +40,7 @@ const SignUp = ({moveToLogin}) => {
           },
         },
       );
+      setLoader(false);
       if (response?.data?.message == 'Registration successful') {
         ToastAndroid.show(response?.data?.message, ToastAndroid.LONG);
         dispatch(setUserData(response?.data));
@@ -48,7 +50,7 @@ const SignUp = ({moveToLogin}) => {
         ToastAndroid.show(response?.data?.message, ToastAndroid.LONG);
       }
     } catch (error) {
-      console.error(error);
+      setLoader(false);
       ToastAndroid.show(
         'An error occurred. Please try again.',
         ToastAndroid.SHORT,
@@ -245,7 +247,11 @@ const SignUp = ({moveToLogin}) => {
                   Terms & Conditions
                 </Text>
               </View>
-              <CustomButton buttonText={'SignUp'} onPress={handleSubmit} />
+              <CustomButton
+                buttonText={'SignUp'}
+                onPress={handleSubmit}
+                loading={loader}
+              />
             </>
           )}
         </Formik>
@@ -269,8 +275,7 @@ const SignUp = ({moveToLogin}) => {
                 color: '#000',
               },
             ]}
-            onPress={moveToLogin}
-            >
+            onPress={moveToLogin}>
             {' '}
             Signin
           </Text>

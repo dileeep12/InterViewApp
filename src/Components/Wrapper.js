@@ -5,7 +5,6 @@ const Wrapper = ({style, children}) => {
   return (
     <SafeAreaView style={[styles.container, {...style}]}>
       <StatusBar
-        translucent
         barStyle={'dark-content'}
         backgroundColor={'transparent'}
       />
